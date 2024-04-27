@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>티켓 예매 사이트</title>
+    <link rel="stylesheet" href="CSS/main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>티켓 예매 사이트</h1>
+      <div class="auth-links">
+        <a href="login.html">로그인</a>
+        <a href="join_member.html">회원가입</a>
+      </div>
+      <div class="user-info">
+        <a href="my_page.html">사용자 이름</a>
+        <button
+          id="logoutButton"
+          style="
+            padding: 8px 16px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          로그아웃
+        </button>
+      </div>
+    </header>
+    <nav>
+      <a href="main.html">홈</a>
+      <a href="concert.html">콘서트</a>
+      <a href="sports.html">스포츠</a>
+      <a href="musical.html">연극/뮤지컬</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" placeholder="이벤트 검색..." />
+      <input type="submit" value="검색" />
+    </div>
+
+    <script>
+      window.onload = function () {
+        const username = localStorage.getItem("username");
+        if (username) {
+          document.querySelector(".auth-links").style.display = "none"; // 로그인, 회원가입 링크 숨기기
+          document.querySelector(".user-info").style.display = "flex";
+          document.querySelector(".user-info a").textContent = username; // 사용자 이름 표시
+        }
+
+        document.getElementById("logoutButton").onclick = function () {
+          localStorage.removeItem("username"); // 사용자 이름 제거
+          document.querySelector(".auth-links").style.display = "flex";
+          document.querySelector(".user-info").style.display = "none";
+          window.location.href = "main.html"; // 메인 페이지로 이동
+        };
+      };
+    </script>
+  </body>
+</html>

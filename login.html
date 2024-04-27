@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>로그인</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+      .container {
+        width: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      input[type="ID"],
+      input[type="password"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>로그인</h2>
+      <form id="loginForm">
+        <label for="ID">아이디:</label>
+        <input type="ID" id="ID" name="ID" required />
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required />
+
+        <input type="submit" value="로그인" />
+
+        <p>계정이 없으신가요? <a href="join_member.html">회원가입</a></p>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("loginForm").onsubmit = function (event) {
+        event.preventDefault(); // 폼 전송 막기
+        var email = document.getElementById("ID").value;
+        var password = document.getElementById("password").value;
+
+        // 로그인 처리 로직을 여기에 구현
+        console.log("로그인 시도:", email, password);
+
+        //////////////////////////////////////
+        //실제 로직에 따라 조건을 추가하여 처리하세요.//
+        //////////////////////////////////////
+        alert("로그인 성공!");
+        // 로그인이 성공하면 임의의 이름 "user"을 main.html로 전달
+        localStorage.setItem("username", "user");
+
+        // 로그인 실패 시 경고창을 띄우고, 로그인 페이지에 머무르게 하기
+        // 실제 로직에 따라 조건을 추가하여 처리하세요.
+        // alert("로그인 실패!");
+
+        // 로그인 성공 시 메인 페이지로 이동
+        location.href = "main.html";
+      };
+    </script>
+  </body>
+</html>
