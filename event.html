@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>상품 상세 페이지 - 티켓 예매 사이트</title>
+    <link rel="stylesheet" href="CSS/event.css" />
+  </head>
+  <body>
+    <header>
+      <h1>티켓 예매 사이트</h1>
+      <div class="auth-links">
+        <a href="login.html">로그인</a>
+        <a href="join_member.html">회원가입</a>
+      </div>
+      <div class="user-info">
+        <a href="my_page.html">사용자 이름</a>
+        <button
+          id="logoutButton"
+          style="
+            padding: 8px 16px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          로그아웃
+        </button>
+      </div>
+    </header>
+    <div class="event-detail-container">
+      <h2>제목 1</h2>
+      <img
+        src="IMG/포스터1.jpeg"
+        alt="포스터 1"
+        style="width: 300px; height: 400px"
+      />
+      <!-- Updated button style -->
+      <button
+        onclick="location.href='purchase.html'"
+        style="
+          display: block;
+          width: 60%;
+          max-width: 200px;
+          padding: 10px 0;
+          font-size: 16px;
+          background-color: #007bff;
+          color: white;
+          border-radius: 5px;
+          margin: 20px auto;
+          cursor: pointer;
+        "
+      >
+        티켓 예매
+      </button>
+      <p><strong>장소:</strong> 서울</p>
+      <p><strong>날짜:</strong> 2024-05-10</p>
+      <p><strong>설명:</strong> 이벤트에 대한 상세 설명이 여기에 포함됩니다.</p>
+    </div>
+    <footer>
+      <p>© 2024 티켓 예매 사이트. 모든 권리 보유.</p>
+    </footer>
+    <script>
+      window.onload = function () {
+        const username = localStorage.getItem("username");
+        if (username) {
+          document.querySelector(".auth-links").style.display = "none";
+          document.querySelector(".user-info").style.display = "flex";
+          document.querySelector(".user-info a").textContent = username;
+        }
+
+        document.getElementById("logoutButton").onclick = function () {
+          localStorage.removeItem("username");
+          document.querySelector(".auth-links").style.display = "flex";
+          document.querySelector(".user-info").style.display = "none";
+          window.location.href = "event.html";
+        };
+      };
+    </script>
+  </body>
+</html>

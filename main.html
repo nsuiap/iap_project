@@ -14,19 +14,7 @@
       </div>
       <div class="user-info">
         <a href="my_page.html">사용자 이름</a>
-        <button
-          id="logoutButton"
-          style="
-            padding: 8px 16px;
-            background-color: #333;
-            color: white;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-          "
-        >
-          로그아웃
-        </button>
+        <button id="logoutButton">로그아웃</button>
       </div>
     </header>
     <nav>
@@ -36,63 +24,81 @@
       <a href="musical.html">연극/뮤지컬</a>
     </nav>
     <div class="search-container">
-      <input type="text" placeholder="이벤트 검색..." />
-      <input type="submit" value="검색" />
+      <input type="text" id="searchInput" placeholder="이벤트 검색..." />
+      <input type="submit" value="검색" onclick="searchEvents()" />
     </div>
-    <div class="events-container">
-      <div class="event">
-        <img src="IMG/포스터1.jpeg" alt="포스터 1" />
-        <h3>제목 1</h3>
-        <p>장소: 서울</p>
-        <p>날짜: 2024-05-10</p>
-        <button>티켓 예매</button>
-      </div>
-      <div class="event">
-        <img src="IMG/포스터2.jpeg" alt="포스터 2" />
-        <h3>제목 2</h3>
-        <p>장소: 부산</p>
-        <p>날짜: 2024-06-15</p>
-        <button>티켓 예매</button>
-      </div>
-      <div class="event">
-        <img src="IMG/포스터3.jpeg" alt="포스터 2" />
-        <h3>제목 3</h3>
-        <p>장소: 서울</p>
-        <p>날짜: 2024-07-15</p>
-        <button>티켓 예매</button>
-      </div>
-      <div class="event">
-        <img src="IMG/포스터4.jpeg" alt="포스터 2" />
-        <h3>제목 4</h3>
-        <p>장소: ???</p>
-        <p>날짜: 2024-06-15</p>
-        <button>티켓 예매</button>
-      </div>
-      <div class="event">
-        <img src="IMG/포스터5.jpeg" alt="포스터 2" />
-        <h3>제목 5</h3>
-        <p>장소: 서울</p>
-        <p>날짜: 2024-09-15</p>
-        <button>티켓 예매</button>
-      </div>
-      <!-- 추가 이벤트 더 나열 가능 -->
+    <div class="events-container" id="eventsContainer">
+      <!-- 이벤트 목록은 아래 스크립트에 의해 동적으로 생성됩니다 -->
     </div>
     <script>
-      window.onload = function () {
-        const username = localStorage.getItem("username");
-        if (username) {
-          document.querySelector(".auth-links").style.display = "none"; // 로그인, 회원가입 링크 숨기기
-          document.querySelector(".user-info").style.display = "flex";
-          document.querySelector(".user-info a").textContent = username; // 사용자 이름 표시
-        }
+      const events = [
+        {
+          title: "제목 1",
+          location: "서울",
+          date: "2024-05-10",
+          poster: "IMG/포스터1.jpeg",
+        },
+        {
+          title: "제목 2",
+          location: "부산",
+          date: "2024-06-15",
+          poster: "IMG/포스터2.jpeg",
+        },
+        {
+          title: "제목 3",
+          location: "서울",
+          date: "2024-07-15",
+          poster: "IMG/포스터3.jpeg",
+        },
+        {
+          title: "제목 4",
+          location: "???",
+          date: "2024-06-15",
+          poster: "IMG/포스터4.jpeg",
+        },
+        {
+          title: "제목 5",
+          location: "서울",
+          date: "2024-09-15",
+          poster: "IMG/포스터5.jpeg",
+        },
+      ];
 
-        document.getElementById("logoutButton").onclick = function () {
-          localStorage.removeItem("username"); // 사용자 이름 제거
-          document.querySelector(".auth-links").style.display = "flex";
-          document.querySelector(".user-info").style.display = "none";
-          window.location.href = "main.html"; // 메인 페이지로 이동
-        };
+      function displayEvents(eventsToDisplay) {
+        const container = document.getElementById("eventsContainer");
+        container.innerHTML = ""; // Clear previous results
+        eventsToDisplay.forEach((event) => {
+          const eventElement = `
+          <div class="event">
+            <img src="${event.poster}" alt="${event.title}" />
+            <h3>${event.title}</h3>
+            <p>장소: ${event.location}</p>
+            <p>날짜: ${event.date}</p>
+            <button>티켓 예매</button>
+          </div>`;
+          container.innerHTML += eventElement;
+        });
+      }
+
+      function searchEvents() {
+        const searchText = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const filteredEvents = events.filter(
+          (event) =>
+            event.title.toLowerCase().includes(searchText) ||
+            event.location.toLowerCase().includes(searchText) ||
+            event.date.includes(searchText)
+        );
+        displayEvents(filteredEvents);
+      }
+
+      window.onload = function () {
+        displayEvents(events); // Display all events initially
       };
     </script>
+    <footer>
+      <p>© 2024 티켓 예매 사이트. 모든 권리 보유.</p>
+    </footer>
   </body>
 </html>
