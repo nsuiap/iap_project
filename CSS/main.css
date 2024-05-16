@@ -98,3 +98,19 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+/* 버튼 공통 스타일 */
+.button-common {
+  padding: 10px 15px;
+  background-color: #007bff; /* 파란색 배경 */
+  color: white; /* 흰색 텍스트 */
+  border: none; /* 테두리 없음 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  cursor: pointer; /* 마우스 포인터 */
+  margin-left: 10px; /* 왼쪽 여백 */
+  transition: background-color 0.3s; /* 배경색 변경 애니메이션 */
+}
+
+.button-common:hover {
+  background-color: #0056b3; /* 호버 시 진한 파란색 */
+}

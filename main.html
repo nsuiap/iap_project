@@ -15,6 +15,7 @@
       <div class="user-info">
         <a href="my_page.html">사용자 이름</a>
         <button id="logoutButton">로그아웃</button>
+        <button id="cartButton">장바구니</button>
       </div>
     </header>
     <nav>
@@ -95,6 +96,21 @@
 
       window.onload = function () {
         displayEvents(events); // Display all events initially
+      };
+    </script>
+    <script>
+      window.onload = function () {
+        displayEvents(events); // 초기 이벤트 표시
+
+        const isLoggedIn = localStorage.getItem("username"); // 로그인 상태 확인
+        if (isLoggedIn) {
+          document.querySelector(".auth-links").style.display = "none"; // 로그인, 회원가입 링크 숨기기
+          document.querySelector(".user-info").style.display = "flex"; // 사용자 정보 및 장바구니 버튼 표시
+          document.querySelector(".user-info a").textContent = isLoggedIn; // 사용자 이름 설정
+        } else {
+          document.querySelector(".user-info").style.display = "none"; // 사용자 정보 및 장바구니 버튼 숨기기
+          document.querySelector(".auth-links").style.display = "flex"; // 로그인, 회원가입 링크 표시
+        }
       };
     </script>
     <footer>
