@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>티켓 주문 페이지</title>
+    <link rel="stylesheet" href="CSS/order.css" />
+  </head>
+  <body>
+    <header>
+      <h1>티켓 예매 사이트</h1>
+      <nav>
+        <a href="main.html">홈</a>
+        <a href="concert.html">콘서트</a>
+        <a href="sports.html">스포츠</a>
+        <a href="musical.html">연극/뮤지컬</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="order-section">
+
+        <h2>티켓 주문하기</h2>
+  
+        <div class="poster">
+  
+          <img src="path_to_poster.jpg" alt="공연 포스터" />
+  
+        </div>
+  
+        <form id="orderForm">
+  
+          <div class="form-group">
+  
+            <label for="name">주문자 이름:</label>
+  
+            <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+
+          <label for="phone">핸드폰 번호:</label>
+
+          <input
+
+            type="tel"
+
+            id="phone"
+
+            name="phone"
+
+            required
+
+            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+
+            placeholder="010-0000-0000"
+
+          />
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="email">이메일:</label>
+
+          <input type="email" id="email" name="email" required />
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="ticketQuantity">티켓 수량 선택:</label>
+
+          <input
+
+            type="number"
+
+            id="ticketQuantity"
+
+            name="ticketQuantity"
+
+            min="1"
+
+            max="10"
+
+          />
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="paymentMethod">결제 방법 선택:</label>
+
+          <select id="paymentMethod" name="paymentMethod">
+
+            <option value="creditCard">신용카드</option>
+
+            <option value="paypal">카카오페이</option>
+
+          </select>
+
+        </div>
+
+        <button type="submit" class="submit-button">주문 확인</button>
+
+      </form>
+
+    </section>
+    </main>
+
+    <footer>
+      <p>© 2024 티켓 예매 사이트. 모든 권리 보유.</p>
+    </footer>
+    <script>
+
+      document.getElementById('orderForm').addEventListener('submit', function(event) {
+  
+        event.preventDefault();
+  
+  
+  
+        const formData = {
+  
+          name: document.getElementById('name').value,
+  
+          phone: document.getElementById('phone').value,
+  
+          email: document.getElementById('email').value,
+  
+          ticketQuantity: document.getElementById('ticketQuantity').value,
+  
+          paymentMethod: document.getElementById('paymentMethod').value
+  
+        };
+  
+  
+  
+        fetch('/send-email', {
+  
+          method: 'POST',
+  
+          headers: {
+  
+            'Content-Type': 'application/json'
+  
+          },
+  
+          body: JSON.stringify(formData)
+  
+        })
+  
+        .then(response => response.json())
+  
+        .then(data => {
+  
+          alert('메일이 성공적으로 전송되었습니다.');
+  
+        })
+  
+        .catch(error => {
+  
+          console.error('Error:', error);
+  
+          alert('메일 전송에 실패했습니다.');
+  
+        });
+  
+      });
+  
+    </script>
+  </body>
+</html>

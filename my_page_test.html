@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>마이 페이지</title>
+    <link rel="stylesheet" href="CSS/my_page.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>마이 페이지</h2>
+      
+      <!-- Personal Information Section -->
+      <div class="info-section">
+        <h3>개인 정보</h3>
+        <table>
+          <tr>
+            <th>이름:</th>
+            <td>이성진</td>
+          </tr>
+          <tr>
+            <th>이메일:</th>
+            <td>example@example.com</td>
+          </tr>
+          <tr>
+            <th>전화번호:</th>
+            <td>010-1234-5678</td>
+          </tr>
+          <tr>
+            <th>역할:</th>
+            <td>customer</td>
+          </tr>
+        </table>
+        <button class="edit-button" onclick="location.href='edit_profile.html'">
+          내 정보 수정
+        </button>
+      </div>
+      
+      <!-- Booking Section -->
+      <div class="booking-section">
+        <h3>예매 내역</h3>
+        <table>
+          <tr>
+            <th>이벤트 이름</th>
+            <th>장소</th>
+            <th>날짜</th>
+            <th>티켓 수</th>
+            <th>총 가격</th>
+            <th>예매 취소</th>
+          </tr>
+          <tr>
+            <td>제목1</td>
+            <td>서울</td>
+            <td>2024-05-20</td>
+            <td>2</td>
+            <td>50,000원</td>
+            <td>
+              <input
+                type="button"
+                value="예매 취소"
+                id="cancelButton_1"
+                style="
+                  background-color: #dc3545;
+                  color: white;
+                  margin-left: 10px;
+                "
+                onclick="cancelBooking('order_key_1');"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>제목2</td>
+            <td>부산</td>
+            <td>2024-06-15</td>
+            <td>1</td>
+            <td>30,000원</td>
+            <td>
+              <input
+                type="button"
+                value="예매 취소"
+                id="cancelButton_2"
+                style="
+                  background-color: #dc3545;
+                  color: white;
+                  margin-left: 10px;
+                "
+                onclick="cancelBooking('order_key_2');"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function cancelBooking(orderKey) {
+        // 예매 취소 처리 로직을 여기에 구현
+        alert("주문 " + orderKey + "가 취소되었습니다.");
+      }
+    </script>
+  </body>
+</html>
